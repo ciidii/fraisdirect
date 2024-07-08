@@ -1,0 +1,17 @@
+spring:
+  mail:
+    host: localhost
+    port: 9025
+    username: ""
+    password: ""
+    properties:
+      mail:
+        smtp:
+          auth: false
+          starttls:
+            enable: false
+
+            #docker run -p 9081:80 -p 9025:25 --name smtp4dev rnwood/smtp4dev:v3
+            #http://localhost:9081
+            #localhost:8080/api/avis
+
