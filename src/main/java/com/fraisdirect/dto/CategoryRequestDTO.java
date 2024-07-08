@@ -5,9 +5,9 @@ import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
 @Data
-public class CategoryResponseDTO {
+public class CategoryRequestDTO {
+    @NotEmpty
     @NotNull
-    private Long categoryID;
     private String nameCategory;
     private String description;
 }

@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Entity(name = "product")
 @Data
 @NoArgsConstructor
@@ -15,7 +17,7 @@ public class Product {
     private String description;
     private float basicPrice;
     private boolean status;
-
+    private int quantity;
     @ManyToOne(cascade = CascadeType.ALL)
     private SubCategory subCategory;
 }

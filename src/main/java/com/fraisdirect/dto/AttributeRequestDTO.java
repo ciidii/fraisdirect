@@ -1,12 +1,15 @@
 package com.fraisdirect.dto;
 
+import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
 @Data
-public class AttributeResponseDTO {
+public class AttributeRequestDTO {
     @NotNull
-    private Long attributeID;
+    @NotEmpty
     private String attributeName;
+    @NotNull
+    @NotEmpty
     private String attributeDescription;
 }

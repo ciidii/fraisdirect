@@ -4,16 +4,8 @@ import org.springframework.http.HttpStatus;
 
 public class ResponseVO<T> {
     private HttpStatus status;
-    private String result;
     private ResponseErrorVo error;
     private T data;
-    public String getResult() {
-        return result;
-    }
-    public void setResult(String result) {
-        this.result = result;
-    }
-
     public void setData(T data) {
         this.data = data;
     }

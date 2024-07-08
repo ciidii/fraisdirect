@@ -1,6 +1,8 @@
 package com.fraisdirect.mapper;
 
+import com.fraisdirect.dto.SubCategoryRequestDTO;
 import com.fraisdirect.dto.SubCategoryResponseDTO;
+import com.fraisdirect.entity.Attribute;
 import com.fraisdirect.entity.SubCategory;
 import org.springframework.stereotype.Component;
 
@@ -27,10 +29,32 @@ public class SubCategoryMapper {
         dto.setNameSubCategory(subCategory.getNameSubCategory());
         dto.setDescriptionSubCategory(subCategory.getDescriptionSubCategory());
         dto.setCategory(this.categoryMapper.toDto(subCategory.getCategory()));
-        dto.setAttributes(this.attributeMapper.toDtoList(subCategory.getAttributes()));
+       // dto.setAttributes(this.attributeMapper.toDtoList(attributes));
+        return dto;
+    }public SubCategoryResponseDTO toDto(SubCategory subCategory,List<Attribute> attributes) {
+        if (subCategory == null) {
+            return null;
+        }
+        SubCategoryResponseDTO dto = new SubCategoryResponseDTO();
+        dto.setSubCategoryID(subCategory.getSubCategoryID());
+        dto.setNameSubCategory(subCategory.getNameSubCategory());
+        dto.setDescriptionSubCategory(subCategory.getDescriptionSubCategory());
+        dto.setCategory(this.categoryMapper.toDto(subCategory.getCategory()));
+        dto.setAttributes(this.attributeMapper.toDtoList(attributes));
         return dto;
     }
 
+    public SubCategory toEntity(SubCategoryRequestDTO dto) {
+        if (dto == null) {
+            return null;
+        }
+        SubCategory subCategory = new SubCategory();
+        subCategory.setNameSubCategory(dto.getNameSubCategory());
+        subCategory.setDescriptionSubCategory(dto.getDescriptionSubCategory());
+        subCategory.setCategory(this.categoryMapper.toEntity(dto.getCategory()));
+       // subCategory.setAttributes(attributeMapper.toEntityList(dto.getAttributes()));
+        return subCategory;
+    }
     public SubCategory toEntity(SubCategoryResponseDTO dto) {
         if (dto == null) {
             return null;
@@ -40,7 +64,7 @@ public class SubCategoryMapper {
         subCategory.setNameSubCategory(dto.getNameSubCategory());
         subCategory.setDescriptionSubCategory(dto.getDescriptionSubCategory());
         subCategory.setCategory(categoryMapper.toEntity(dto.getCategory()));
-        subCategory.setAttributes(attributeMapper.toEntityList(dto.getAttributes()));
+       // subCategory.setAttributes(attributeMapper.toEntityList(dto.getAttributes()));
         return subCategory;
     }
 
@@ -53,7 +77,7 @@ public class SubCategoryMapper {
                 .collect(Collectors.toList());
     }
 
-    public List<SubCategory> toEntityList(List<SubCategoryResponseDTO> dtos) {
+    public List<SubCategory> toEntityList(List<SubCategoryRequestDTO> dtos) {
         if (dtos == null) {
             return null;
         }

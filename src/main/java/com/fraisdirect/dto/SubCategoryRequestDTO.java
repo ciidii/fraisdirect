@@ -7,10 +7,8 @@ import lombok.Data;
 import java.util.List;
 
 @Data
-public class SubCategoryResponseDTO{
+public class SubCategoryRequestDTO {
 
-    @NotNull
-    private Long subCategoryID;
     private String nameSubCategory;
     private String descriptionSubCategory;
     @NotNull

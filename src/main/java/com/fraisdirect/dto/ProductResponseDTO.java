@@ -1,7 +1,8 @@
 package com.fraisdirect.dto;
 
-import com.fraisdirect.entity.SubCategory;
 import lombok.Data;
+
+import java.util.List;
 
 @Data
 public class ProductResponseDTO {
@@ -9,6 +10,8 @@ public class ProductResponseDTO {
     private String codeProduct;
     private String description;
     private float basicPrice;
+    private int quantity;
     private boolean status;
-    private SubCategoryResponseDTO subCategory;
+    private List<ProductImageResponseDTO> urls;
+    private SubCategoryResponseDTO subCategoryResponseDTO;
 }

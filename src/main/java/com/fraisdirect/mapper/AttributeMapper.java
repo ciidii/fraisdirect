@@ -1,5 +1,6 @@
 package com.fraisdirect.mapper;
 
+import com.fraisdirect.dto.AttributeRequestDTO;
 import com.fraisdirect.dto.AttributeResponseDTO;
 import com.fraisdirect.entity.Attribute;
 import org.springframework.stereotype.Component;
@@ -27,6 +28,15 @@ public class AttributeMapper {
         }
         Attribute attribute = new Attribute();
         attribute.setAttributeID(dto.getAttributeID());
+        attribute.setAttributeName(dto.getAttributeName());
+        attribute.setAttributeDescription(dto.getAttributeDescription());
+        return attribute;
+    }
+    public Attribute toEntity(AttributeRequestDTO dto) {
+        if (dto == null) {
+            return null;
+        }
+        Attribute attribute = new Attribute();
         attribute.setAttributeName(dto.getAttributeName());
         attribute.setAttributeDescription(dto.getAttributeDescription());
         return attribute;

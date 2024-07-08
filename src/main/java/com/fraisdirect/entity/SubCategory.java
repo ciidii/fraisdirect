@@ -15,8 +15,7 @@ public class SubCategory {
     private Long subCategoryID;
     private String nameSubCategory;
     private String descriptionSubCategory;
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
+    @JoinColumn(name = "category_id")
     private Category category;
-    @OneToMany(cascade = CascadeType.ALL,orphanRemoval = true)
-    private List<Attribute> attributes;
 }

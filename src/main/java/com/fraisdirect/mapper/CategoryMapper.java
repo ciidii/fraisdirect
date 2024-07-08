@@ -1,5 +1,6 @@
 package com.fraisdirect.mapper;
 
+import com.fraisdirect.dto.CategoryRequestDTO;
 import com.fraisdirect.dto.CategoryResponseDTO;
 import com.fraisdirect.entity.Category;
 import org.springframework.stereotype.Component;
@@ -27,6 +28,15 @@ public class CategoryMapper {
         }
         Category category = new Category();
         category.setCategoryID(dto.getCategoryID());
+        category.setNameCategory(dto.getNameCategory());
+        category.setDescription(dto.getDescription());
+        return category;
+    }
+    public Category toEntity(CategoryRequestDTO dto) {
+        if (dto == null) {
+            return null;
+        }
+        Category category = new Category();
         category.setNameCategory(dto.getNameCategory());
         category.setDescription(dto.getDescription());
         return category;
