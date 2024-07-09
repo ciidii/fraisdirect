@@ -1,10 +1,9 @@
-package com.fraisdirect.security;
-
+package com.fraisdirect.service;
+import com.fraisdirect.entity.Validation;
 import lombok.AllArgsConstructor;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
-import tech.arona.avis.entities.Validation;
 
 @AllArgsConstructor
 @Service
@@ -12,7 +11,7 @@ public class NotificationService {
 
     JavaMailSender javaMailSender;
 
-    public void envoyer(Validation validation) {
+    public void envoyer( Validation validation) {
         SimpleMailMessage message = new SimpleMailMessage();
         message.setFrom("arona10ndiaye@gmail.com");
         message.setTo(validation.getUtilisateur().getEmail());

@@ -1,4 +1,4 @@
-package tech.arona.avis.entities;
+package com.fraisdirect.entity;
 
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -9,11 +9,11 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
 import java.util.Collections;
-import java.util.List;
 
 @Getter
 @Setter
 @Entity
+
 @Table (name="utilisateur")
 public class Utilisateur implements UserDetails {
     @Id

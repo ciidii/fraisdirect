@@ -1,5 +1,6 @@
-package tech.arona.avis.security;
+package com.fraisdirect.security;
 
+import com.fraisdirect.service.UtilisateurService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -9,7 +10,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 import org.springframework.web.filter.OncePerRequestFilter;
-import tech.arona.avis.service.UtilisateurService;
+
 import java.io.IOException;
 
 @Service

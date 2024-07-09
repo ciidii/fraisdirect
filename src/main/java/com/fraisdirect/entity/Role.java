@@ -1,4 +1,4 @@
-package tech.arona.avis.entities;
+package com.fraisdirect.entity;
 
 import jakarta.persistence.*;
 import lombok.Getter;

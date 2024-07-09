@@ -1,5 +1,5 @@
-package tech.arona.avis.entities;
+package com.fraisdirect.entity;
 
 public enum TypeDeRole {
-    UTILISATEUR, ADMINISTRATEUR
+    CLIENT, BOUTIQUIER
 }

@@ -1,15 +1,15 @@
-package tech.arona.avis.service;
+package com.fraisdirect.service;
 
+import com.fraisdirect.entity.Role;
+import com.fraisdirect.entity.TypeDeRole;
+import com.fraisdirect.entity.Utilisateur;
+import com.fraisdirect.entity.Validation;
+import com.fraisdirect.repository.UtilisateurRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-import tech.arona.avis.entities.Role;
-import tech.arona.avis.entities.TypeDeRole;
-import tech.arona.avis.entities.Utilisateur;
-import tech.arona.avis.entities.Validation;
-import tech.arona.avis.repository.UtilisateurRepository;
 
 import java.time.Instant;
 import java.util.Map;
@@ -38,7 +38,7 @@ public class UtilisateurService implements UserDetailsService {
         utilisateur.setPassword(mdpCrypte);
 
         Role roleUtilisateur = new Role();
-        roleUtilisateur.setLibelle(TypeDeRole.UTILISATEUR);
+        roleUtilisateur.setLibelle(TypeDeRole.CLIENT);
         utilisateur.setRole(roleUtilisateur);
 
         utilisateur = this.utilisateurRepository.save(utilisateur);

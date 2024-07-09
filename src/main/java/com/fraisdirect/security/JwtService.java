@@ -1,20 +1,17 @@
-package tech.arona.avis.security;
+package com.fraisdirect.security;
 
+import com.fraisdirect.entity.Utilisateur;
+import com.fraisdirect.service.UtilisateurService;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
 import lombok.AllArgsConstructor;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
-import tech.arona.avis.entities.Utilisateur;
-import tech.arona.avis.service.UtilisateurService;
 
-import javax.crypto.SecretKey;
 import java.security.Key;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Function;
 

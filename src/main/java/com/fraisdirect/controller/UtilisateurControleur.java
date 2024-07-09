@@ -1,4 +1,8 @@
-package tech.arona.avis.controller;
+package com.fraisdirect.controller;
+import com.fraisdirect.dto.AuthentificationDto;
+import com.fraisdirect.entity.Utilisateur;
+import com.fraisdirect.security.JwtService;
+import com.fraisdirect.service.UtilisateurService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.MediaType;
@@ -9,11 +13,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import tech.arona.avis.dto.AuthentificationDto;
-import tech.arona.avis.entities.Utilisateur;
-import tech.arona.avis.security.JwtService;
-import tech.arona.avis.service.UtilisateurService;
-
 import java.util.Map;
 
 @Slf4j

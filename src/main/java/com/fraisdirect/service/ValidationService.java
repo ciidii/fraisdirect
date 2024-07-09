@@ -1,11 +1,10 @@
-package tech.arona.avis.service;
+package com.fraisdirect.service;
 
+import com.fraisdirect.entity.Utilisateur;
+import com.fraisdirect.entity.Validation;
+import com.fraisdirect.repository.ValidationRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
-import tech.arona.avis.entities.Utilisateur;
-import tech.arona.avis.entities.Validation;
-import tech.arona.avis.repository.ValidationRepository;
-
 import java.time.Instant;
 import java.util.Random;
 

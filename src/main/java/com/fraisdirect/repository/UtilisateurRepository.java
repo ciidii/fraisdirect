@@ -1,7 +1,7 @@
-package tech.arona.avis.repository;
+package com.fraisdirect.repository;
 
+import com.fraisdirect.entity.Utilisateur;
 import org.springframework.data.repository.CrudRepository;
-import tech.arona.avis.entities.Utilisateur;
 
 import java.util.Optional;
 

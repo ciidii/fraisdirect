@@ -1,4 +1,4 @@
-package tech.arona.avis.security;
+package com.fraisdirect.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
