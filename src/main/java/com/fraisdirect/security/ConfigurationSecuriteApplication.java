@@ -34,13 +34,14 @@ public class ConfigurationSecuriteApplication {
         return
                 httpSecurity
                         .csrf(AbstractHttpConfigurer::disable)
+                        .cors(AbstractHttpConfigurer::disable)
                         .authorizeHttpRequests(
                                 authorize ->
                                         authorize
                                                 .requestMatchers(POST,"/inscription").permitAll()
                                                 .requestMatchers(POST,"/activation").permitAll()
                                                 .requestMatchers(POST,"/connexion").permitAll()
-                                                .anyRequest().authenticated()
+                                                .anyRequest().permitAll()
                         )
                         .sessionManagement(httpSecuritySessionManagementConfigurer ->
                                 httpSecuritySessionManagementConfigurer.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
