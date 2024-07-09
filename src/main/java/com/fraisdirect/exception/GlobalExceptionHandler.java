@@ -39,12 +39,12 @@ public class GlobalExceptionHandler {
     }
 
     @ExceptionHandler(EntityNotFoundException.class)
-    public ResponseEntity<ResponseVO<Void>> handleNotFoundException(EntityNotFoundException ex) {
+    public ResponseEntity<ResponseVO<Void>> runtimeException(RuntimeException ex) {
         ResponseErrorVo errorVo = new ResponseErrorVo("ENTITY_NOT_FOUND", "L'entité introuvable", ex.getMessage());
         ResponseVO<Void> response = new ResponseVOBuilder<Void>().fail(HttpStatus.NOT_FOUND).error(errorVo,HttpStatus.NOT_FOUND).build();
         return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
     }
-   // @ExceptionHandler(Exception.class)
+   @ExceptionHandler(Exception.class)
     public ResponseEntity<ResponseVO<Void>> handleGenericException(Exception ex) {
         ResponseErrorVo errorVo = new ResponseErrorVo("GENERIC_ERROR", "Erreur interne", ex.getMessage());
         ResponseVO<Void> response = new ResponseVOBuilder<Void>().fail(HttpStatus.INTERNAL_SERVER_ERROR).error(errorVo,HttpStatus.INTERNAL_SERVER_ERROR).build();
