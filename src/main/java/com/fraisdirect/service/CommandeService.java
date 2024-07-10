@@ -63,9 +63,20 @@ public class CommandeService {
         } else {
             commande.setStatut(1);
             commandeRepository.save(commande);
+            updateStock(commande); // Mettre à jour le stock après validation de la commande
             genererFacturePDF(commande);
         }
         return commande;
+    }
+
+    @Transactional
+    public void updateStock(Commande commande) {
+        for (CommandeProduit cp : commande.getProduits()) {
+            Produit produit = cp.getProduit();
+            int quantiteEnStock = produit.getQuantiteEnStock();
+            produit.setQuantiteEnStock(quantiteEnStock - cp.getQuantite());
+            produitRepository.save(produit);
+        }
     }
 
     public ResponseEntity<InputStreamResource> genererFacturePDF(Commande commande) {
@@ -76,7 +87,7 @@ public class CommandeService {
             Document document = new Document(pdfDoc);
 
             document.add(new Paragraph("Entreprise : FraisDiriect.com"));
-            document.add(new Paragraph("Facture N: "+commande.getId()));
+            document.add(new Paragraph("Facture N: " + commande.getId()));
             document.add(new Paragraph("Email du client: " + commande.getClientEmail()));
 
             Table table = new Table(4);
@@ -103,9 +114,8 @@ public class CommandeService {
 
             document.add(table);
             document.add(new Paragraph("Somme Totale: " + sommeTotale));
-
-            document.add(new Paragraph("Merci de votre fidélite"));
-            document.add(new Paragraph("A bientôt"));
+            document.add(new Paragraph("Merci de votre fidélité"));
+            document.add(new Paragraph("À bientôt"));
 
             document.close();
 
