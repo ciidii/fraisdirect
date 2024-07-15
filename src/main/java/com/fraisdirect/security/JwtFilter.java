@@ -1,6 +1,6 @@
 package com.fraisdirect.security;
 
-import com.fraisdirect.service.UtilisateurService;
+import com.fraisdirect.service.Impl.UtilisateurService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;

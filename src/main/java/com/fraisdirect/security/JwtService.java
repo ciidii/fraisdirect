@@ -1,7 +1,7 @@
 package com.fraisdirect.security;
 
 import com.fraisdirect.entity.Utilisateur;
-import com.fraisdirect.service.UtilisateurService;
+import com.fraisdirect.service.Impl.UtilisateurService;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;

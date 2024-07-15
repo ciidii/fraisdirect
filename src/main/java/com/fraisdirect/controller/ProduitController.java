@@ -1,36 +1,47 @@
 package com.fraisdirect.controller;
-
-import com.fraisdirect.model.Produit;
-import com.fraisdirect.service.ProduitService;
+import com.fraisdirect.entity.Produit;
+import com.fraisdirect.repository.ProduitRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Optional;
+import java.util.List;
 
 @RestController
+@RequestMapping("produits")
 public class ProduitController {
+
     @Autowired
-    private ProduitService produitService;
-    @GetMapping("/produits")
-    public Iterable<Produit> getProduits(){
-        return produitService.getProd();
+    private ProduitRepository produitRepository;
+
+    @GetMapping("/{produitId}")
+    public Produit getProduitById(@PathVariable Long produitId) {
+        return produitRepository.findById(produitId).orElse(null);
     }
-    @GetMapping("/produit/{id}")
-    public Produit getProduit(@PathVariable("id") final int id){
-        Optional<Produit> produit = produitService.getProdById(id);
-        return produit.get();
+
+    @PostMapping("/ajouter")
+    public Produit ajouterProduit(@RequestBody Produit produit) {
+        return produitRepository.save(produit);
     }
-    @PostMapping("/produit")
-    public Produit createProduit(@RequestBody Produit produit){
-        return produitService.enregistreProduit(produit);
+
+    @PutMapping("/{produitId}")
+    public Produit modifierProduit(@PathVariable Long produitId, @RequestBody Produit produitModifie) {
+        Produit produit = produitRepository.findById(produitId).orElse(null);
+        if (produit != null) {
+            produit.setNom(produitModifie.getNom());
+            produit.setPrix(produitModifie.getPrix());
+            return produitRepository.save(produit);
+        }
+        return null;
     }
-    @PostMapping("/produits")
-    public Iterable<Produit> createProds(@RequestBody Iterable<Produit> produits){
-        return produitService.enrProds(produits);
+
+    @DeleteMapping("/{produitId}")
+    public void supprimerProduit(@PathVariable Long produitId) {
+        produitRepository.deleteById(produitId);
     }
-    @DeleteMapping("/produit/{id}")
-    public void supprimerProduit(@PathVariable("id") final int id){
-        Produit p = produitService.getProdById(id).get();
-        produitService.supProduit(p);
+
+    @GetMapping("/liste")
+    public List<Produit> listeProduits() {
+        return produitRepository.findAll();
     }
 }
+

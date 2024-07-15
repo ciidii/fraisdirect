@@ -14,4 +14,5 @@ public interface SubCategoryService {
     public ResponseEntity<ResponsePageableVO<SubCategoryResponseDTO>> browserSubCategory(RequestPageableVO requestPageableVO);
     public ResponseEntity<ResponseVO<SubCategoryResponseDTO>> getSubCategoryByID(Long categoryID);
     public ResponseEntity<ResponseVO<SubCategoryResponseDTO>> addAttributeSubCategory(DTOForAttributeSubCategory dtoForAttributeSubCategory);
+    ResponseEntity<ResponsePageableVO<SubCategoryResponseDTO>> getSubCategoryByCategoryID(RequestPageableVO requestPageableVO, Long categoryID);
 }

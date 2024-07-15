@@ -9,4 +9,7 @@ public class DTOForAttributeSubCategory {
     private Long subcategoryID;
     @NotNull
     private Long[] longArrays;
+
+    public static class UserRequestDTO {
+    }
 }

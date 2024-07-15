@@ -1,7 +1,7 @@
 package com.fraisdirect.controller;
 
 import com.fraisdirect.model.Client;
-import com.fraisdirect.service.ClientService;
+import com.fraisdirect.service.Impl.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

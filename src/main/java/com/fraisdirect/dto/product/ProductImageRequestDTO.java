@@ -1,4 +1,4 @@
-package com.fraisdirect.dto;
+package com.fraisdirect.dto.product;
 
 import lombok.Data;
 

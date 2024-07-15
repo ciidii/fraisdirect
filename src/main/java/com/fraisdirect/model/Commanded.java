@@ -7,7 +7,7 @@ import java.util.Date;
 
 @Data
 @Entity
-public class Commande {
+public class Commanded {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idCommande;

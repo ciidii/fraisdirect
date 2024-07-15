@@ -1,7 +1,7 @@
 package com.fraisdirect.service.Impl;
 
-import com.fraisdirect.dto.ProductRequestDTO;
-import com.fraisdirect.dto.ProductResponseDTO;
+import com.fraisdirect.dto.product.ProductRequestDTO;
+import com.fraisdirect.dto.product.ProductResponseDTO;
 import com.fraisdirect.entity.Product;
 import com.fraisdirect.entity.ProductImage;
 import com.fraisdirect.entity.ProductImageKey;

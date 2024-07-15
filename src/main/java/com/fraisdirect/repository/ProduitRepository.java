@@ -1,9 +1,7 @@
 package com.fraisdirect.repository;
 
-import com.fraisdirect.model.Produit;
+import com.fraisdirect.entity.Produit;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
 
-@Repository
-public interface ProduitRepository extends JpaRepository<Produit,Integer> {
+public interface ProduitRepository extends JpaRepository<Produit, Long> {
 }

@@ -1,5 +1,6 @@
 package com.fraisdirect.exception;
 
+import com.fraisdirect.exception.custome.EmailAlReadyExistException;
 import com.fraisdirect.utils.*;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.validation.ConstraintViolation;
@@ -33,21 +34,29 @@ public class GlobalExceptionHandler {
             error.getViolations().add(
                     new Violation(fieldError.getField(), fieldError.getDefaultMessage()));
         }
-        ResponseErrorVo<ValidationErrorResponse> responseErrorVo = new ResponseErrorVo<>("INVALID_DATA","les données ne sont pas valide");
-        ResponseVO<ValidationErrorResponse> responseVO = new ResponseVOBuilder<ValidationErrorResponse>().addData(error).error(responseErrorVo,HttpStatus.BAD_REQUEST).build();
+        ResponseErrorVo<ValidationErrorResponse> responseErrorVo = new ResponseErrorVo<>("INVALID_DATA", "les données ne sont pas valide");
+        ResponseVO<ValidationErrorResponse> responseVO = new ResponseVOBuilder<ValidationErrorResponse>().addData(error).error(responseErrorVo, HttpStatus.BAD_REQUEST).build();
         return new ResponseEntity<>(responseVO, HttpStatus.BAD_REQUEST);
     }
 
     @ExceptionHandler(EntityNotFoundException.class)
     public ResponseEntity<ResponseVO<Void>> runtimeException(RuntimeException ex) {
         ResponseErrorVo errorVo = new ResponseErrorVo("ENTITY_NOT_FOUND", "L'entité introuvable", ex.getMessage());
-        ResponseVO<Void> response = new ResponseVOBuilder<Void>().fail(HttpStatus.NOT_FOUND).error(errorVo,HttpStatus.NOT_FOUND).build();
+        ResponseVO<Void> response = new ResponseVOBuilder<Void>().fail(HttpStatus.NOT_FOUND).error(errorVo, HttpStatus.NOT_FOUND).build();
         return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
     }
-   @ExceptionHandler(Exception.class)
+
+    @ExceptionHandler(EmailAlReadyExistException.class)
+    public ResponseEntity<ResponseVO<Void>> emailAlReadyExistException(RuntimeException ex) {
+        ResponseErrorVo errorVo = new ResponseErrorVo("EMAIL_EXIST", "Cet e-mail existe déjà. Veuillez vous connecter ou utiliser un autre e-mail.", ex.getMessage());
+        ResponseVO<Void> response = new ResponseVOBuilder<Void>().fail(HttpStatus.BAD_REQUEST).error(errorVo, HttpStatus.BAD_REQUEST).build();
+        return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(Exception.class)
     public ResponseEntity<ResponseVO<Void>> handleGenericException(Exception ex) {
         ResponseErrorVo errorVo = new ResponseErrorVo("GENERIC_ERROR", "Erreur interne", ex.getMessage());
-        ResponseVO<Void> response = new ResponseVOBuilder<Void>().fail(HttpStatus.INTERNAL_SERVER_ERROR).error(errorVo,HttpStatus.INTERNAL_SERVER_ERROR).build();
+        ResponseVO<Void> response = new ResponseVOBuilder<Void>().fail(HttpStatus.INTERNAL_SERVER_ERROR).error(errorVo, HttpStatus.INTERNAL_SERVER_ERROR).build();
         return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 }

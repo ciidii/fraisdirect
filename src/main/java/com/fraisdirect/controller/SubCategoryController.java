@@ -44,4 +44,9 @@ public class SubCategoryController {
     public ResponseEntity<ResponseVO<SubCategoryResponseDTO>> getSubCategoryById(@Min(1) @RequestParam("subCategoryID") Long subCategoryID) {
         return this.subCategoryService.getSubCategoryByID(subCategoryID);
     }
+    @GetMapping("by-category-id")
+    public ResponseEntity<ResponsePageableVO<SubCategoryResponseDTO>>  getSubCategoryByCategoryID(@Min(1) @RequestParam("categoryID") Long categoryID, @RequestParam("page") int page, @RequestParam("rpp") int rpp) {
+        RequestPageableVO requestPageableVO = new RequestPageableVO(page, rpp);
+        return this.subCategoryService.getSubCategoryByCategoryID(requestPageableVO,categoryID);
+    }
 }

@@ -1,24 +1,35 @@
+# Configuration pour l'envoi d'e-mails avec Gmail
 spring:
   mail:
-    host: localhost
-    port: 9025
-    username: ""
-    password: ""
+    host: smtp.gmail.com
+    port: 587
+    username: arona10ndiaye@gmail.com
+    password: tpossdeqiuxcyhin
     properties:
       mail:
         smtp:
-          auth: false
+          auth: true
           starttls:
-            enable: false
+            enable: true
+
+            # Configuration pour l'envoi d'e-mails avec un serveur SMTP local (désactivée)
+            spring:
+              mail:
+                host: localhost
+                port: 9025
+                username: ""
+                password: ""
+                properties:
+                  mail:
+                    smtp:
+                      auth: false
+                      starttls:
+                        enable: false
+
 
             #docker run -p 9081:80 -p 9025:25 --name smtp4dev rnwood/smtp4dev:v3
             #http://localhost:9081
 
 
-  web:
-    cors:
-      allowed-origins: "http://localhost:4200"
-      allowed-methods: GET, POST, PATCH, PUT, DELETE, OPTIONS, HEAD
-      max-age: 3600
-      allowed-headers: "Requestor-Type"
-      exposed-headers: "X-Get-Header"
+
+

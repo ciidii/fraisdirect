@@ -22,7 +22,9 @@ public class Utilisateur implements UserDetails {
     private String password;
     private String nom;
     private String email;
-    private Boolean actif=false;
+    private Boolean active=false;
+    private String Address;
+
     @OneToOne(cascade = CascadeType.ALL)
     private Role role;
 
@@ -44,21 +46,21 @@ public class Utilisateur implements UserDetails {
 
     @Override
     public boolean isAccountNonExpired() {
-        return this.actif;
+        return this.active;
     }
 
     @Override
     public boolean isAccountNonLocked() {
-        return this.actif;
+        return this.active;
     }
 
     @Override
     public boolean isCredentialsNonExpired() {
-        return this.actif;
+        return this.active;
     }
 
     @Override
     public boolean isEnabled() {
-        return this.actif;
+        return this.active;
     }
 }

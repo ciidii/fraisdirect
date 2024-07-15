@@ -1,5 +1,6 @@
-package com.fraisdirect.dto;
+package com.fraisdirect.dto.product;
 
+import com.fraisdirect.dto.SubCategoryResponseDTO;
 import lombok.Data;
 
 import java.util.List;

@@ -1,7 +1,7 @@
 package com.fraisdirect.mapper;
 
-import com.fraisdirect.dto.ProductImageRequestDTO;
-import com.fraisdirect.dto.ProductImageResponseDTO;
+import com.fraisdirect.dto.product.ProductImageRequestDTO;
+import com.fraisdirect.dto.product.ProductImageResponseDTO;
 import com.fraisdirect.entity.ProductImageKey;
 import com.fraisdirect.entity.ProductImage;
 import org.springframework.stereotype.Component;

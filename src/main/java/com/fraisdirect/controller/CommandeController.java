@@ -1,46 +1,32 @@
 package com.fraisdirect.controller;
 
-import com.fraisdirect.model.Commande;
-import com.fraisdirect.model.Produit;
-import com.fraisdirect.service.ClientService;
-import com.fraisdirect.service.CommandeService;
-import com.fraisdirect.service.ProduitService;
+import com.fraisdirect.entity.Commande;
+import com.fraisdirect.service.Impl.CommandeService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.InputStreamResource;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
+@RequestMapping("commandes")
 public class CommandeController {
-    @Autowired
-    public CommandeService commandeService;
-    @Autowired
-    private ClientService clientService;
-    @Autowired
-    private ProduitService produitService;
 
-    @GetMapping("/commande")
-    public Commande getCommande(@PathVariable Integer id){
-        return commandeService.getCommande(id).get();
-    }
-    @GetMapping("/commandes")
-    public Iterable<Commande> getCommndes(){
-        return commandeService.getCommandes();
-    }
-    @PostMapping("/{id}/commanderProduit")
-    public Commande commanderProduit(@PathVariable("id") Integer id, @RequestBody Commande commande){
+    @Autowired
+    private CommandeService commandeService;
 
-            Produit produit = produitService.getProdById(commande.getIdProduit()).get();
-            if (produit == null) {
-                throw new RuntimeException("Produit invalide");
-            }
-            commande.setIdClient(id);
-            double prix = produit.getPrix_Kg();
-            commande.setPrixTotal(prix * commande.getQty());
-            return commandeService.enrCommande(commande);
-
+    @PostMapping("creer")
+    public Commande creerCommande(@RequestBody Commande commande) {
+        return commandeService.creerCommande(commande);
     }
-    @DeleteMapping("/commande/{id}")
-    public void supCommande(@PathVariable("id") Integer id){
-        Commande commande = commandeService.getCommande(id).get();
-        commandeService.supCommande(commande);
+
+    @PostMapping("/valider/{commandeId}")
+    public void validerCommande(@PathVariable Long commandeId) {
+        commandeService.validerCommande(commandeId);
+    }
+
+    @GetMapping("/{commandeId}/facture")
+    public ResponseEntity<InputStreamResource> downloadFacture(@PathVariable Long commandeId) {
+        Commande commande = commandeService.validerCommande(commandeId);
+        return commandeService.genererFacturePDF(commande);
     }
 }

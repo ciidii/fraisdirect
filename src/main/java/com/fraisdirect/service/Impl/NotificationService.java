@@ -1,4 +1,4 @@
-package com.fraisdirect.service;
+package com.fraisdirect.service.Impl;
 import com.fraisdirect.entity.Validation;
 import lombok.AllArgsConstructor;
 import org.springframework.mail.SimpleMailMessage;

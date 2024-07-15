@@ -2,15 +2,18 @@ package com.fraisdirect.controller;
 import com.fraisdirect.dto.AuthentificationDto;
 import com.fraisdirect.entity.Utilisateur;
 import com.fraisdirect.security.JwtService;
-import com.fraisdirect.service.UtilisateurService;
+import com.fraisdirect.service.Impl.UtilisateurService;
+import com.fraisdirect.utils.ResponseVO;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.Map;
 
 @Slf4j
@@ -24,13 +27,15 @@ public class UtilisateurControleur {
     private JwtService jwtService;
 
     @PostMapping(path = "inscription")
-    public void inscription(@RequestBody Utilisateur utilisateur) {
-        this.utilisateurService.inscription(utilisateur);
+    public ResponseEntity<ResponseVO<Void>> inscription(@RequestBody Utilisateur utilisateur) {
+      return   this.utilisateurService.inscription(utilisateur);
     }
 
     @PostMapping(path = "activation")
-    public void activation(@RequestBody Map<String, String> activation) {
-        this.utilisateurService.activation(activation);
+    public ResponseEntity<ResponseVO<Void>> activation(@RequestParam("code") String code) {
+        Map<String, String> activationCode = new HashMap<>();
+        activationCode.put("code",code);
+       return this.utilisateurService.activation(activationCode);
     }
 
     @PostMapping(path = "connexion")

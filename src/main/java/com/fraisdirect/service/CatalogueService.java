@@ -1,11 +1,10 @@
 package com.fraisdirect.service;
 
-import com.fraisdirect.dto.ProductRequestDTO;
-import com.fraisdirect.dto.ProductResponseDTO;
+import com.fraisdirect.dto.product.ProductRequestDTO;
+import com.fraisdirect.dto.product.ProductResponseDTO;
 import com.fraisdirect.utils.RequestPageableVO;
 import com.fraisdirect.utils.ResponsePageableVO;
 import com.fraisdirect.utils.ResponseVO;
-import com.fraisdirect.utils.ResponseVOBuilder;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 

@@ -1,7 +1,7 @@
 package com.fraisdirect.controller;
 
-import com.fraisdirect.dto.ProductRequestDTO;
-import com.fraisdirect.dto.ProductResponseDTO;
+import com.fraisdirect.dto.product.ProductRequestDTO;
+import com.fraisdirect.dto.product.ProductResponseDTO;
 import com.fraisdirect.service.CatalogueService;
 import com.fraisdirect.utils.RequestPageableVO;
 import com.fraisdirect.utils.ResponsePageableVO;
