@@ -13,6 +13,7 @@ public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long productID;
+    private String name;
     private String codeProduct;
     private String description;
     private float basicPrice;

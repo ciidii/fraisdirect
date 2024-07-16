@@ -4,8 +4,10 @@ import com.fraisdirect.dto.product.ProductImageRequestDTO;
 import com.fraisdirect.dto.product.ProductImageResponseDTO;
 import com.fraisdirect.entity.ProductImageKey;
 import com.fraisdirect.entity.ProductImage;
+import com.fraisdirect.utils.FilesUtils;
 import org.springframework.stereotype.Component;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -33,14 +35,17 @@ public class ProductImageMapper {
         dto.setPrincipal(productImage.isPrincipal());
         return dto;
     }
-    public ProductImageResponseDTO toDtoResponse(ProductImageKey productImage) {
+    public List<byte[]> toDtoResponse(ProductImageKey productImage) {
         if (productImage == null) {
             return null;
         }
         ProductImageResponseDTO dto = new ProductImageResponseDTO();
-        dto.setImageUrl(productImage.getImageUrl());
         dto.setPrincipal(productImage.isPrincipal());
-        return dto;
+        if (!productImage.getImageUrl().isEmpty()) {
+            String s = productImage.getImageUrl();
+            dto.setImageUrl(FilesUtils.readFileFileFromLocation(s));
+        }
+        return Collections.singletonList(dto.getImageUrl());
     }
 
 
@@ -51,10 +56,4 @@ public class ProductImageMapper {
         return entityList.stream().map(this::toDto).collect(Collectors.toList());
     }
 
-    public List<ProductImageResponseDTO> toDtoResponse(List<ProductImageKey> entityList) {
-        if (entityList == null) {
-            return null;
-        }
-        return entityList.stream().map(this::toDtoResponse).collect(Collectors.toList());
-    }
 }

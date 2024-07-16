@@ -16,19 +16,28 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("catalogue")
 @AllArgsConstructor
-public class CatalogueController{
+public class CatalogueController {
     private final CatalogueService catalogueService;
+
     @PostMapping()
-    public ResponseEntity<ResponseVO<ProductResponseDTO>>addItem(@ModelAttribute ProductRequestDTO productRequestDT){
+    public ResponseEntity<ResponseVO<ProductResponseDTO>> addItem(@ModelAttribute ProductRequestDTO productRequestDT) {
         return this.catalogueService.addItem(productRequestDT);
     }
+
     @GetMapping("all")
-    public ResponseEntity<ResponsePageableVO<ProductResponseDTO>> browser(@Min(1) @RequestParam("page") int page, @Min(1) @RequestParam("rpp") int rpp, @Min(0) @Max(2) @RequestParam(value = "status",defaultValue = "0") int status){
+    public ResponseEntity<ResponsePageableVO<ProductResponseDTO>> browser(@Min(1) @RequestParam("page") int page, @Min(1) @RequestParam("rpp") int rpp, @Min(0) @Max(2) @RequestParam(value = "status", defaultValue = "0") int status) {
         RequestPageableVO requestPageableVO = new RequestPageableVO(page, rpp);
-        return this.catalogueService.browser(requestPageableVO,status);
+        return this.catalogueService.browser(requestPageableVO, status);
     }
+
+    @GetMapping("product-by-subcategory")
+    public ResponseEntity<ResponsePageableVO<ProductResponseDTO>> browserProductBySubcategory(@Min(1) @RequestParam("page") int page, @Min(1) @RequestParam("rpp") int rpp, @Min(1) @RequestParam(value = "subcategoryID") Long subcategoryID) {
+        RequestPageableVO requestPageableVO = new RequestPageableVO(page, rpp);
+        return this.catalogueService.browserProductBySubcategory(requestPageableVO, subcategoryID);
+    }
+
     @GetMapping
-    public ResponseEntity<ResponseVO<ProductResponseDTO>> getProductById(@RequestParam("productID") @Min(1) @Positive Long productID){
+    public ResponseEntity<ResponseVO<ProductResponseDTO>> getProductById(@RequestParam("productID") @Min(1) @Positive Long productID) {
         return this.catalogueService.getProductById(productID);
     }
 }

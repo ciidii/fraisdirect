@@ -12,6 +12,8 @@ public class ProductRequestDTO {
     @NotNull
     @Size(min = 5,max = 5)
     private String codeProduct;
+    @NotNull
+    private String name;
     private String description;
     @NotNull
     private float basicPrice;

@@ -2,6 +2,7 @@ package com.fraisdirect.mapper;
 
 import com.fraisdirect.dto.product.ProductRequestDTO;
 import com.fraisdirect.dto.product.ProductResponseDTO;
+import com.fraisdirect.entity.Attribute;
 import com.fraisdirect.entity.Product;
 import com.fraisdirect.entity.ProductImageKey;
 import lombok.AllArgsConstructor;
@@ -23,6 +24,7 @@ public class ProductMapper {
         }
         ProductResponseDTO dto = new ProductResponseDTO();
         dto.setProductID(product.getProductID());
+        dto.setName(product.getName());
         dto.setCodeProduct(product.getCodeProduct());
         dto.setDescription(product.getDescription());
         dto.setBasicPrice(product.getBasicPrice());
@@ -32,19 +34,22 @@ public class ProductMapper {
         return dto;
     }
 
-    public ProductResponseDTO toDto(Product product, List<ProductImageKey> productImages) {
+    public ProductResponseDTO toDto(Product product, List<ProductImageKey> productImages, List<Attribute> attributes) {
         if (product == null) {
             return null;
         }
         ProductResponseDTO dto = new ProductResponseDTO();
         dto.setProductID(product.getProductID());
+        dto.setName(product.getName());
         dto.setCodeProduct(product.getCodeProduct());
         dto.setDescription(product.getDescription());
         dto.setBasicPrice(product.getBasicPrice());
         dto.setQuantity(product.getQuantity());
         dto.setStatus(product.isStatus());
-        dto.setUrls(productImageMapper.toDtoResponse(productImages));
-        dto.setSubCategoryResponseDTO(subCategoryMapper.toDto(product.getSubCategory()));
+            productImages.forEach(productImageKey -> {
+                dto.setImages(this.productImageMapper.toDtoResponse(productImageKey));
+            });
+        dto.setSubCategoryResponseDTO(subCategoryMapper.toDto(product.getSubCategory(),attributes));
         return dto;
     }
 
@@ -54,6 +59,7 @@ public class ProductMapper {
         }
         Product product = new Product();
         product.setCodeProduct(dto.getCodeProduct());
+        product.setName(dto.getName());
         product.setDescription(dto.getDescription());
         product.setBasicPrice(dto.getBasicPrice());
         product.setStatus(dto.isStatus());
@@ -68,6 +74,7 @@ public class ProductMapper {
         }
         Product product = new Product();
         product.setCodeProduct(dto.getCodeProduct());
+        product.setName(dto.getName());
         product.setDescription(dto.getDescription());
         product.setBasicPrice(dto.getBasicPrice());
         product.setQuantity(dto.getQuantity());

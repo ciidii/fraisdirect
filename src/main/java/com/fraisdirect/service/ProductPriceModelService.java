@@ -1,5 +1,6 @@
 package com.fraisdirect.service;
 
+import com.fraisdirect.dto.price.ProductPriceDTO;
 import com.fraisdirect.dto.price.ProductPriceModelRequestDTO;
 import com.fraisdirect.dto.price.ProductPriceModelResponseDTO;
 import com.fraisdirect.utils.RequestPageableVO;
@@ -14,4 +15,6 @@ public interface ProductPriceModelService {
     public ResponseEntity<ResponsePageableVO<ProductPriceModelResponseDTO>> browserAll(RequestPageableVO requestPageableVO);
     public ResponseEntity<ResponseVO<Void>> modify(ProductPriceModelResponseDTO productPriceModelResponseDTO);
     public ResponseEntity<ResponseVO<Void>> delete(Long productPriceModelID);
+
+    ResponseEntity<ResponseVO<ProductPriceDTO<?>>> getProductActivePriceHelper(Long productID);
 }

@@ -15,4 +15,6 @@ public interface CatalogueService {
     public ResponseEntity<ResponseVO<ProductResponseDTO>> getProductById(Long productID);
     public ResponseEntity<ResponsePageableVO<ProductResponseDTO>> findProductsByDescription(String description);
     public ResponseEntity<ResponseVO<Void>> removeProduct(Long productID);
+
+    ResponseEntity<ResponsePageableVO<ProductResponseDTO>> browserProductBySubcategory(RequestPageableVO requestPageableVO, Long subcategoryID);
 }

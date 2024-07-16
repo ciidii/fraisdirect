@@ -1,5 +1,6 @@
 package com.fraisdirect.repository;
 
+import com.fraisdirect.entity.Product;
 import com.fraisdirect.entity.SubCategory;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
