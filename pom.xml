@@ -5,14 +5,17 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>3.3.1</version>
+		<version>3.1.5</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.fraisdirect</groupId>
 	<artifactId>fraisdirect</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>fraisdirect</name>
-	<description>frais direct un site e-com spécialiser dans la vente des léguine frais </description>
+	<description>Bienvenue sur FraisDirect.com, votre plateforme en ligne dédiée à la valorisation des produits locaux
+		et à la mise en avant des vendeurs de légumes de votre région. Notre mission est de créer un lien direct entre
+		les producteurs locaux et les consommateurs, en offrant une visibilité accrue aux producteurs et en facilitant
+		l'accès à des produits frais et de qualité pour les consommateurs. </description>
 	<url/>
 	<licenses>
 		<license/>
@@ -61,7 +64,13 @@
 		<dependency>
 			<groupId>org.apache.commons</groupId>
 			<artifactId>commons-lang3</artifactId>
-			<version>3.14.0</version>
+			<version>3.12.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter-api</artifactId>
+			<version>5.9.3</version>
+			<scope>test</scope>
 		</dependency>
 
 		<dependency>
@@ -104,9 +113,7 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
-
 	</dependencies>
-
 	<build>
 		<plugins>
 			<plugin>
@@ -123,5 +130,4 @@
 			</plugin>
 		</plugins>
 	</build>
-
 </project>
