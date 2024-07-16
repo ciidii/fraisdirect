@@ -11,7 +11,7 @@ import java.util.List;
 @NoArgsConstructor
 public class SubCategory {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long subCategoryID;
     private String nameSubCategory;
     private String descriptionSubCategory;

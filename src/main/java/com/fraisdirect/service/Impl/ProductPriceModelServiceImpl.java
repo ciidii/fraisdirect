@@ -22,6 +22,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,6 +38,7 @@ public class ProductPriceModelServiceImpl implements ProductPriceModelService {
     private final ProductPriceMapper productPriceMapper;
 
     @Override
+    @Transactional
     public ResponseEntity<ResponseVO<Void>> createPrice(ProductPriceModelRequestDTO priceRequestDTO) {
         Product product = this.productRepository.
                 findById(priceRequestDTO.getProduct()).
@@ -55,6 +57,8 @@ public class ProductPriceModelServiceImpl implements ProductPriceModelService {
             this.wightBasedPriceRepository.findById(priceRequestDTO.getBasedPriceID()).orElseThrow(() -> new EntityNotFoundException("Il n'existe pas un modèle de prix basé sur le poid  avec un identifiant " + priceRequestDTO.getBasedPriceID()));
         }
         this.productPriceModelRepository.save(priceModel);
+        product.setStatus(true);
+        this.productRepository.save(product);
         return new ResponseEntity<>(new ResponseVOBuilder<Void>().build(), HttpStatus.CREATED);
     }
 
