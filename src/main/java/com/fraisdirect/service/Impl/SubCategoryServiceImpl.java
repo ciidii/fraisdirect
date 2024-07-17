@@ -76,24 +76,18 @@ public class SubCategoryServiceImpl implements SubCategoryService {
     }
 
     @Override
-    public ResponseEntity<ResponsePageableVO<SubCategoryResponseDTO>> browserSubCategory(RequestPageableVO requestPageableVO) {
-        PageRequest pageRequest = PageRequest.of(requestPageableVO.getPage() - 1, requestPageableVO.getRpp());
-        Page<SubCategory> subCategoryPage = this.subCategoryRepository.findAll(pageRequest);
+    public ResponseEntity<ResponseVO<List<SubCategoryResponseDTO>>> browserSubCategory() {
+        List<SubCategory> subCategoriesFromDB = this.subCategoryRepository.findAll();
 
         List<SubCategoryResponseDTO> subCategoryResponseDtos = new ArrayList<>();
 
-        for (SubCategory subCategory : subCategoryPage) {
+        for (SubCategory subCategory : subCategoriesFromDB) {
             List<Attribute> attributes = this.subCategoryAttributeRepository.findAllBySubCategoryID(subCategory.getSubCategoryID());
             subCategoryResponseDtos.add(this.subCategoryMapper.toDto(subCategory,attributes));
         }
 
-        ResponsePageableVO<SubCategoryResponseDTO> responsePageableVO = new ResponsePageableVO<>(
-                subCategoryPage.getTotalElements(),
-                subCategoryResponseDtos,
-                requestPageableVO
-        );
-
-        return new ResponseEntity<>(responsePageableVO, HttpStatus.OK);
+        ResponseVO<List<SubCategoryResponseDTO>> responseVO = new ResponseVOBuilder<List<SubCategoryResponseDTO>>().addData(subCategoryResponseDtos).build();
+        return new ResponseEntity<>(responseVO, HttpStatus.OK);
     }
 
     @Override

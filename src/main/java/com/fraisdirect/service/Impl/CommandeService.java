@@ -11,7 +11,8 @@ import com.itextpdf.layout.Document;
 import com.itextpdf.layout.element.Cell;
 import com.itextpdf.layout.element.Paragraph;
 import com.itextpdf.layout.element.Table;
-import org.springframework.beans.factory.annotation.Autowired;
+import jakarta.persistence.EntityNotFoundException;
+import lombok.AllArgsConstructor;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
@@ -25,21 +26,16 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Service
+@AllArgsConstructor
 public class CommandeService {
-
-    @Autowired
     private CommandeRepository commandeRepository;
-
-    @Autowired
     private ProduitRepository produitRepository;
-
-    @Autowired
     private EmailService emailService;
 
     @Transactional
     public Commande validerCommande(Long commandeId) {
         Commande commande = commandeRepository.findById(commandeId)
-                .orElseThrow(() -> new RuntimeException("Commanded non trouvée"));
+                .orElseThrow(() -> new EntityNotFoundException("Commanded non trouvée"));
 
         Map<String, Integer> produitsIndisponibles = new HashMap<>();
 

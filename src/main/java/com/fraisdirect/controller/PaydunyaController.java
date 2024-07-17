@@ -1,6 +1,6 @@
 package com.fraisdirect.controller;
 
-import com.fraisdirect.service.PaydunyaService;
+import com.fraisdirect.service.Impl.PaydunyaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;

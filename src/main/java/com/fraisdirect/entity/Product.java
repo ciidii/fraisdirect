@@ -16,7 +16,6 @@ public class Product {
     private String name;
     private String codeProduct;
     private String description;
-    private float basicPrice;
     private boolean status;
     private int quantity;
     @ManyToOne(cascade = CascadeType.ALL)

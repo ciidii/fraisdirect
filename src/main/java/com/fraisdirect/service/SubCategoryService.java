@@ -8,10 +8,12 @@ import com.fraisdirect.utils.ResponsePageableVO;
 import com.fraisdirect.utils.ResponseVO;
 import org.springframework.http.ResponseEntity;
 
+import java.util.List;
+
 public interface SubCategoryService {
     public ResponseEntity<ResponseVO<SubCategoryResponseDTO>> addSubCategory(SubCategoryRequestDTO categoryRequestDTO);
     public ResponseEntity<ResponseVO<SubCategoryResponseDTO>> modifySubCategory(SubCategoryResponseDTO categoryRequestDTO);
-    public ResponseEntity<ResponsePageableVO<SubCategoryResponseDTO>> browserSubCategory(RequestPageableVO requestPageableVO);
+    public ResponseEntity<ResponseVO<List<SubCategoryResponseDTO>>> browserSubCategory();
     public ResponseEntity<ResponseVO<SubCategoryResponseDTO>> getSubCategoryByID(Long categoryID);
     public ResponseEntity<ResponseVO<SubCategoryResponseDTO>> addAttributeSubCategory(DTOForAttributeSubCategory dtoForAttributeSubCategory);
     ResponseEntity<ResponsePageableVO<SubCategoryResponseDTO>> getSubCategoryByCategoryID(RequestPageableVO requestPageableVO, Long categoryID);

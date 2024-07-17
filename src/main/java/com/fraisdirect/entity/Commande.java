@@ -18,10 +18,4 @@ public class Commande {
 
     @OneToMany(mappedBy = "commande", cascade = CascadeType.ALL)
     private List<CommandeProduit> produits;
-
-    public List<CommandeProduit> getCommandeProduits() {
-        return produits;
-    }
-
-    // getters et setters
 }

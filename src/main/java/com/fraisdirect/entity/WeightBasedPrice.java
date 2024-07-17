@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 @Entity
 @Data
 @NoArgsConstructor
-public class WightBasedPrice{
+public class WeightBasedPrice {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long wightBasedPriceID;

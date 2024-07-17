@@ -13,6 +13,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("categories")
 @AllArgsConstructor
@@ -31,9 +33,8 @@ public class CategoriesController {
     }
 
     @GetMapping("all")
-    public ResponseEntity<ResponsePageableVO<CategoryResponseDTO>> browserCategories(@Min(1) @RequestParam("page") int page,@Min(1) @RequestParam("rpp") int rpp){
-        RequestPageableVO requestPageableVO = new RequestPageableVO(page,rpp);
-        return this.categoryService.browserCategory(requestPageableVO);
+    public ResponseEntity<ResponseVO<List<CategoryResponseDTO>>> browserCategories(){
+        return this.categoryService.browserCategory();
     }
 
     @GetMapping()

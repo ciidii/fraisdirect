@@ -14,6 +14,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("subcategories")
 @AllArgsConstructor
@@ -35,9 +37,8 @@ public class SubCategoryController {
     }
 
     @GetMapping("all")
-    public ResponseEntity<ResponsePageableVO<SubCategoryResponseDTO>> browserSubCategories(@Min(1) @RequestParam("page") int page, @Min(1) @RequestParam("rpp") int rpp) {
-        RequestPageableVO requestPageableVO = new RequestPageableVO(page, rpp);
-        return this.subCategoryService.browserSubCategory(requestPageableVO);
+    public ResponseEntity<ResponseVO<List<SubCategoryResponseDTO>>> browserSubCategories() {
+        return this.subCategoryService.browserSubCategory();
     }
 
     @GetMapping()

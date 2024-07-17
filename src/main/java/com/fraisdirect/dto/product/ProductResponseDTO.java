@@ -12,7 +12,6 @@ public class ProductResponseDTO {
     private String name;
     private String codeProduct;
     private String description;
-    private float basicPrice;
     private int quantity;
     private boolean status;
     @ElementCollection

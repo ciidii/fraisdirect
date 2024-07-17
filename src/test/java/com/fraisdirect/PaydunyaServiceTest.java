@@ -1,5 +1,5 @@
 package com.fraisdirect;
-import com.fraisdirect.service.PaydunyaService;
+import com.fraisdirect.service.Impl.PaydunyaService;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;

@@ -27,7 +27,6 @@ public class ProductMapper {
         dto.setName(product.getName());
         dto.setCodeProduct(product.getCodeProduct());
         dto.setDescription(product.getDescription());
-        dto.setBasicPrice(product.getBasicPrice());
         dto.setQuantity(product.getQuantity());
         dto.setStatus(product.isStatus());
         dto.setSubCategoryResponseDTO(subCategoryMapper.toDto(product.getSubCategory()));
@@ -43,7 +42,6 @@ public class ProductMapper {
         dto.setName(product.getName());
         dto.setCodeProduct(product.getCodeProduct());
         dto.setDescription(product.getDescription());
-        dto.setBasicPrice(product.getBasicPrice());
         dto.setQuantity(product.getQuantity());
         dto.setStatus(product.isStatus());
             productImages.forEach(productImageKey -> {
@@ -61,7 +59,6 @@ public class ProductMapper {
         product.setCodeProduct(dto.getCodeProduct());
         product.setName(dto.getName());
         product.setDescription(dto.getDescription());
-        product.setBasicPrice(dto.getBasicPrice());
         product.setStatus(dto.isStatus());
         product.setQuantity(dto.getQuantity());
         // product.getSubCategory().setSubCategoryID(dto.getSubCategory());
@@ -76,7 +73,6 @@ public class ProductMapper {
         product.setCodeProduct(dto.getCodeProduct());
         product.setName(dto.getName());
         product.setDescription(dto.getDescription());
-        product.setBasicPrice(dto.getBasicPrice());
         product.setQuantity(dto.getQuantity());
         product.setStatus(dto.isStatus());
         product.setSubCategory(subCategoryMapper.toEntity(dto.getSubCategoryResponseDTO()));

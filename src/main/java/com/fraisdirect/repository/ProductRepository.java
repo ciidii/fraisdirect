@@ -20,7 +20,7 @@ public interface ProductRepository extends JpaRepository<Product,Long> {
     @Query("select p from product p where p.status= false")
     Page<Product> findNotSalableProduct(Pageable pageable);
 
-    @Query("select p from product p where p.subCategory.subCategoryID= :subcategoryID")
+    @Query("select p from product p where p.subCategory.subCategoryID= :subcategoryID and p.status =true")
     Page<Product> browserProductBySubcategory(PageRequest pageRequest,@Param("subcategoryID") Long subcategoryID);
 
 }

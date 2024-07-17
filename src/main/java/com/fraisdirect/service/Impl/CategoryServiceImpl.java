@@ -45,22 +45,15 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    public ResponseEntity<ResponsePageableVO<CategoryResponseDTO>> browserCategory(RequestPageableVO requestPageableVO) {
-        PageRequest pageRequest = PageRequest.of(requestPageableVO.getPage() - 1, requestPageableVO.getRpp());
-        Page<Category> categoryPage = this.categoryRepository.findAll(pageRequest);
+    public ResponseEntity<ResponseVO<List<CategoryResponseDTO>>> browserCategory() {
+        List<Category> categoryPage = this.categoryRepository.findAll();
 
         List<CategoryResponseDTO> memberResponseDtos = new ArrayList<>();
 
         for (Category category : categoryPage) {
             memberResponseDtos.add(this.categoryMapper.toDto(category));
         }
-
-        ResponsePageableVO<CategoryResponseDTO> responsePageableVO = new ResponsePageableVO<>(
-                categoryPage.getTotalElements(),
-                memberResponseDtos,
-                requestPageableVO
-        );
-
+        ResponseVO<List<CategoryResponseDTO>> responsePageableVO = new ResponseVOBuilder<List<CategoryResponseDTO>>().addData(memberResponseDtos).build();
         return new ResponseEntity<>(responsePageableVO, HttpStatus.OK);
     }
 

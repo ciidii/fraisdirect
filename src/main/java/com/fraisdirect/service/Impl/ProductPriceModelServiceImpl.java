@@ -9,7 +9,7 @@ import com.fraisdirect.mapper.price.ProductPriceModelMapper;
 import com.fraisdirect.repository.ProductPriceModelRepository;
 import com.fraisdirect.repository.ProductRepository;
 import com.fraisdirect.repository.QuantityBasedPriceRepository;
-import com.fraisdirect.repository.WightBasedPriceRepository;
+import com.fraisdirect.repository.WeightBasedPriceRepository;
 import com.fraisdirect.service.ProductPriceModelService;
 import com.fraisdirect.utils.RequestPageableVO;
 import com.fraisdirect.utils.ResponsePageableVO;
@@ -33,7 +33,7 @@ public class ProductPriceModelServiceImpl implements ProductPriceModelService {
     private final ProductPriceModelRepository productPriceModelRepository;
     private final ProductPriceModelMapper productPriceModelMapper;
     private final ProductRepository productRepository;
-    private final WightBasedPriceRepository wightBasedPriceRepository;
+    private final WeightBasedPriceRepository weightBasedPriceRepository;
     private final QuantityBasedPriceRepository quantityBasedPriceRepository;
     private final ProductPriceMapper productPriceMapper;
 
@@ -54,7 +54,7 @@ public class ProductPriceModelServiceImpl implements ProductPriceModelService {
         if (priceRequestDTO.getPriceModel() == PRICE_MODEL.QUANTITY) {
             this.quantityBasedPriceRepository.findById(priceRequestDTO.getBasedPriceID()).orElseThrow(() -> new EntityNotFoundException("Il n'existe pas un modèle de prix basé sur quantité  avec un identifiant" + priceRequestDTO.getBasedPriceID()));
         } else if (priceRequestDTO.getPriceModel() == PRICE_MODEL.WEIGHT) {
-            this.wightBasedPriceRepository.findById(priceRequestDTO.getBasedPriceID()).orElseThrow(() -> new EntityNotFoundException("Il n'existe pas un modèle de prix basé sur le poid  avec un identifiant " + priceRequestDTO.getBasedPriceID()));
+            this.weightBasedPriceRepository.findById(priceRequestDTO.getBasedPriceID()).orElseThrow(() -> new EntityNotFoundException("Il n'existe pas un modèle de prix basé sur le poid  avec un identifiant " + priceRequestDTO.getBasedPriceID()));
         }
         this.productPriceModelRepository.save(priceModel);
         product.setStatus(true);
@@ -102,8 +102,8 @@ public class ProductPriceModelServiceImpl implements ProductPriceModelService {
         ProductPriceModel activePrice = this.productPriceModelRepository.findActivePrice(productID).orElseThrow();
         ProductPriceDTO<?> productPriceDTO = new ProductPriceDTO<>();
         if (activePrice.getPriceModel().toString().equals("WEIGHT")) {
-            WightBasedPrice wightBasedPrice = wightBasedPriceRepository.findById(activePrice.getBasedPriceID()).orElseThrow();
-            productPriceDTO= this.productPriceMapper.toDTO(activePrice,wightBasedPrice);
+            WeightBasedPrice weightBasedPrice = weightBasedPriceRepository.findById(activePrice.getBasedPriceID()).orElseThrow();
+            productPriceDTO= this.productPriceMapper.toDTO(activePrice, weightBasedPrice);
 
         } else if (activePrice.getPriceModel().toString().equals("QUANTITY")) {
             QuantityBasedPrice quantityBasedPrice = this.quantityBasedPriceRepository.findById(activePrice.getBasedPriceID()).orElseThrow();

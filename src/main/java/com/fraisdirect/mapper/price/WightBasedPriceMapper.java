@@ -2,29 +2,29 @@ package com.fraisdirect.mapper.price;
 
 import com.fraisdirect.dto.price.WightBasedPriceRequestDTO;
 import com.fraisdirect.dto.price.WightBasedPriceResponseDTO;
-import com.fraisdirect.entity.WightBasedPrice;
+import com.fraisdirect.entity.WeightBasedPrice;
 import org.springframework.stereotype.Component;
 
 @Component
 public class WightBasedPriceMapper {
-    public WightBasedPrice toEntity(WightBasedPriceRequestDTO dto) {
+    public WeightBasedPrice toEntity(WightBasedPriceRequestDTO dto) {
         if (dto == null) {
             return null;
         }
 
-        WightBasedPrice entity = new WightBasedPrice();
+        WeightBasedPrice entity = new WeightBasedPrice();
         entity.setLabel(dto.getLabel());
         entity.setWight(dto.getWight());
         entity.setPrice(dto.getPrice());
         entity.setAround(dto.getAround());
 
         return entity;
-    }public WightBasedPrice toEntity(WightBasedPriceResponseDTO dto) {
+    }public WeightBasedPrice toEntity(WightBasedPriceResponseDTO dto) {
         if (dto == null) {
             return null;
         }
 
-        WightBasedPrice entity = new WightBasedPrice();
+        WeightBasedPrice entity = new WeightBasedPrice();
         entity.setWightBasedPriceID(dto.getWightBasedPriceID());
         entity.setLabel(dto.getLabel());
         entity.setWight(dto.getWight());
@@ -34,7 +34,7 @@ public class WightBasedPriceMapper {
         return entity;
     }
 
-    public WightBasedPriceResponseDTO toDto(WightBasedPrice entity) {
+    public WightBasedPriceResponseDTO toDto(WeightBasedPrice entity) {
         if (entity == null) {
             return null;
         }
@@ -49,7 +49,7 @@ public class WightBasedPriceMapper {
         return dto;
     }
 
-    public WightBasedPriceResponseDTO toDtoResponse(WightBasedPrice entity) {
+    public WightBasedPriceResponseDTO toDtoResponse(WeightBasedPrice entity) {
         if (entity == null) {
             return null;
         }

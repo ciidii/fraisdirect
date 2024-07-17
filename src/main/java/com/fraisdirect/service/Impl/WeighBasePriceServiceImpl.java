@@ -2,9 +2,9 @@ package com.fraisdirect.service.Impl;
 
 import com.fraisdirect.dto.price.WightBasedPriceRequestDTO;
 import com.fraisdirect.dto.price.WightBasedPriceResponseDTO;
-import com.fraisdirect.entity.WightBasedPrice;
+import com.fraisdirect.entity.WeightBasedPrice;
 import com.fraisdirect.mapper.price.WightBasedPriceMapper;
-import com.fraisdirect.repository.WightBasedPriceRepository;
+import com.fraisdirect.repository.WeightBasedPriceRepository;
 import com.fraisdirect.service.WeighBasePriceService;
 import com.fraisdirect.utils.RequestPageableVO;
 import com.fraisdirect.utils.ResponsePageableVO;
@@ -24,25 +24,25 @@ import java.util.List;
 @Service
 @AllArgsConstructor
 public class WeighBasePriceServiceImpl implements WeighBasePriceService {
-    private final WightBasedPriceRepository wightBasedPriceRepository;
+    private final WeightBasedPriceRepository weightBasedPriceRepository;
     private final WightBasedPriceMapper wightBasedPriceMapper;
 
     @Override
     public ResponseEntity<ResponseVO<Void>> createPrice(WightBasedPriceRequestDTO priceRequestDTO) {
-        WightBasedPrice wightBasedPrice = this.wightBasedPriceMapper.toEntity(priceRequestDTO);
-        this.wightBasedPriceRepository.save(wightBasedPrice);
+        WeightBasedPrice weightBasedPrice = this.wightBasedPriceMapper.toEntity(priceRequestDTO);
+        this.weightBasedPriceRepository.save(weightBasedPrice);
         return new ResponseEntity<>(new ResponseVOBuilder<Void>().build(), HttpStatus.CREATED);
     }
 
     @Override
     public ResponseEntity<ResponsePageableVO<WightBasedPriceResponseDTO>> browserAll(RequestPageableVO requestPageableVO) {
         PageRequest pageRequest = PageRequest.of(requestPageableVO.getPage() - 1, requestPageableVO.getRpp());
-        Page<WightBasedPrice> wightBasedPricePage = this.wightBasedPriceRepository.findAll(pageRequest);
+        Page<WeightBasedPrice> wightBasedPricePage = this.weightBasedPriceRepository.findAll(pageRequest);
 
         List<WightBasedPriceResponseDTO> responseDTOList = new ArrayList<>();
 
-        for (WightBasedPrice wightBasedPrice : wightBasedPricePage) {
-            responseDTOList.add(this.wightBasedPriceMapper.toDto(wightBasedPrice));
+        for (WeightBasedPrice weightBasedPrice : wightBasedPricePage) {
+            responseDTOList.add(this.wightBasedPriceMapper.toDto(weightBasedPrice));
         }
 
         ResponsePageableVO<WightBasedPriceResponseDTO> responsePageableVO = new ResponsePageableVO<>(
@@ -56,20 +56,20 @@ public class WeighBasePriceServiceImpl implements WeighBasePriceService {
 
     @Override
     public ResponseEntity<ResponseVO<Void>> modify(WightBasedPriceResponseDTO wightBasedPriceResponseDTO) {
-        this.wightBasedPriceRepository
+        this.weightBasedPriceRepository
                 .findById(wightBasedPriceResponseDTO.getWightBasedPriceID())
                 .orElseThrow(() -> new EntityNotFoundException("Cette entité n'existe pas"));
-        WightBasedPrice wightBasedPrice = this.wightBasedPriceMapper.toEntity(wightBasedPriceResponseDTO);
-                this.wightBasedPriceRepository.save(wightBasedPrice);
+        WeightBasedPrice weightBasedPrice = this.wightBasedPriceMapper.toEntity(wightBasedPriceResponseDTO);
+                this.weightBasedPriceRepository.save(weightBasedPrice);
         return new ResponseEntity<>(new ResponseVOBuilder<Void>().build(), HttpStatus.OK);
     }
 
     @Override
     public ResponseEntity<ResponseVO<Void>> delete(Long weighBasePriceID) {
-        WightBasedPrice wightBasedPrice = this.wightBasedPriceRepository
+        WeightBasedPrice weightBasedPrice = this.weightBasedPriceRepository
                 .findById(weighBasePriceID)
                 .orElseThrow(() -> new EntityNotFoundException("Cette entité n'existe pas"));
-        this.wightBasedPriceRepository.delete(wightBasedPrice);
+        this.weightBasedPriceRepository.delete(weightBasedPrice);
         return new ResponseEntity<>(new ResponseVOBuilder<Void>().build(), HttpStatus.OK);
     }
 }

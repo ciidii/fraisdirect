@@ -1,11 +1,11 @@
 package com.fraisdirect.entity;
 
 import jakarta.persistence.*;
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
-@Getter
-@Setter
+@Data
 @Entity
 public class CommandeProduit {
     @Id
@@ -20,6 +20,4 @@ public class CommandeProduit {
     @ManyToOne
     @JoinColumn(name = "commande_id")
     private Commande commande;
-
-    // getters et setters
 }

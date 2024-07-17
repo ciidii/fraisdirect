@@ -15,8 +15,6 @@ public class ProductRequestDTO {
     @NotNull
     private String name;
     private String description;
-    @NotNull
-    private float basicPrice;
     private boolean status;
     private int quantity;
     @NotNull
