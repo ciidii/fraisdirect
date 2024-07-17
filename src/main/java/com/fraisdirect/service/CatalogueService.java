@@ -17,4 +17,9 @@ public interface CatalogueService {
     public ResponseEntity<ResponseVO<Void>> removeProduct(Long productID);
 
     ResponseEntity<ResponsePageableVO<ProductResponseDTO>> browserProductBySubcategory(RequestPageableVO requestPageableVO, Long subcategoryID);
+
+    public ResponseEntity <ResponseVO<Void>> deleteItem(Long id);
+
+
+    ResponseEntity<ResponseVO<ProductResponseDTO>> updateItem(Long id, ProductRequestDTO productRequestDTO);
 }

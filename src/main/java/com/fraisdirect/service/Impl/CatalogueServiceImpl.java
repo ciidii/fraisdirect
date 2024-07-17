@@ -129,6 +129,16 @@ public class CatalogueServiceImpl implements CatalogueService {
         return new ResponseEntity<>(responsePageableVO, HttpStatus.OK);
     }
 
+    @Override
+    public ResponseEntity<ResponseVO<Void>> deleteItem(Long id) {
+        return null;
+    }
+
+    @Override
+    public ResponseEntity<ResponseVO<ProductResponseDTO>> updateItem(Long id, ProductRequestDTO productRequestDTO) {
+        return null;
+    }
+
     private SubCategory checkIfSubcategoryExist(Long subCategoryID) {
         return this.subCategoryRepository.findById(subCategoryID).orElseThrow(() -> new EntityNotFoundException("Le sous-catégory n'est pas"));
     }

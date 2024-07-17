@@ -29,6 +29,16 @@ public class CatalogueController {
         RequestPageableVO requestPageableVO = new RequestPageableVO(page, rpp);
         return this.catalogueService.browser(requestPageableVO, status);
     }
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteItem(@PathVariable Long id) {
+        this.catalogueService.deleteItem(id);
+        return ResponseEntity.noContent().build();
+    }
+    @PutMapping("/{id}")
+    public ResponseEntity<ResponseVO<ProductResponseDTO>> updateItem(@PathVariable Long id, @RequestBody ProductRequestDTO productRequestDTO) {
+        return this.catalogueService.updateItem(id, productRequestDTO);
+    }
+
 
     @GetMapping("product-by-subcategory")
     public ResponseEntity<ResponsePageableVO<ProductResponseDTO>> browserProductBySubcategory(@Min(1) @RequestParam("page") int page, @Min(1) @RequestParam("rpp") int rpp, @Min(1) @RequestParam(value = "subcategoryID") Long subcategoryID) {

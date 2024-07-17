@@ -1,5 +1,6 @@
 package com.fraisdirect.config;
-import com.paydunya.neptune.*;
+
+import com.paydunya.neptune.PaydunyaCheckoutStore;
 
 public class PaydunyaConfig {
     private PaydunyaCheckoutStore store;
