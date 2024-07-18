@@ -7,7 +7,7 @@ import lombok.Data;
 import java.util.List;
 
 @Data
-public class ProductResponseDTO {
+public class    ProductResponseDTO {
     private Long productID;
     private String name;
     private String codeProduct;
